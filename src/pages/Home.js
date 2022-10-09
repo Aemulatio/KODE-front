@@ -3,7 +3,7 @@ import {Box, Card, CardContent, CardHeader, CardMedia, Skeleton, Typography} fro
 import axios from "axios";
 
 const Home = (props) => {
-    const {activeTab} = props;
+    const {activeTab, search} = props;
     const [usersList, setUsersList] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
 
@@ -41,7 +41,14 @@ const Home = (props) => {
                 :
                 (<>
                         {
-                            usersList.map(user => (
+                            usersList.filter(el => {
+                                if (el.firstName.toLowerCase().indexOf(search) !== -1)
+                                    return el
+                                if (el.lastName.toLowerCase().indexOf(search) !== -1)
+                                    return el
+                                if (el.userTag.toLowerCase().indexOf(search) !== -1)
+                                    return el
+                            }).map(user => (
                                 <Box key={user.id} sx={{width: "343px", display: "flex", alignItems: "center"}}
                                      elevation={0}>
                                     <Box sx={{p: "6px 0", mr: "16px"}}>
