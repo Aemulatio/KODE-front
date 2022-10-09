@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Card, CardContent, CardHeader, CardMedia, Skeleton, Typography} from "@mui/material";
 import axios from "axios";
+import EmptySearch from "../components/EmptySearch";
 
 const Home = (props) => {
     const {activeTab, search} = props;
@@ -22,7 +23,12 @@ const Home = (props) => {
         <Box
             sx={{
                 p: "16px",
+                position: "relative",
+                height: "79.8vh",
                 // overflowY: "auto",
+                display: "flex",
+                flexDirection: "column",
+
             }}
         >
             {isLoading
@@ -42,12 +48,15 @@ const Home = (props) => {
                 (<>
                         {
                             usersList.filter(el => {
-                                if (el.firstName.toLowerCase().indexOf(search) !== -1)
+                                if (el.firstName.toLowerCase().indexOf(search) !== -1) {
                                     return el
-                                if (el.lastName.toLowerCase().indexOf(search) !== -1)
+                                }
+                                if (el.lastName.toLowerCase().indexOf(search) !== -1) {
                                     return el
-                                if (el.userTag.toLowerCase().indexOf(search) !== -1)
+                                }
+                                if (el.userTag.toLowerCase().indexOf(search) !== -1) {
                                     return el
+                                }
                             }).map(user => (
                                 <Box key={user.id} sx={{width: "343px", display: "flex", alignItems: "center"}}
                                      elevation={0}>
@@ -90,6 +99,22 @@ const Home = (props) => {
                                     </Box>
                                 </Box>
                             ))
+                        }
+                        {
+                            usersList.filter(el => {
+                                if (el.firstName.toLowerCase().indexOf(search) !== -1) {
+                                    return el
+                                }
+                                if (el.lastName.toLowerCase().indexOf(search) !== -1) {
+                                    return el
+                                }
+                                if (el.userTag.toLowerCase().indexOf(search) !== -1) {
+                                    return el
+                                }
+                            }).length === 0 &&
+                            <>
+                                <EmptySearch/>
+                            </>
                         }
                     </>
                 )}
