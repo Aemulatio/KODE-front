@@ -1,29 +1,102 @@
-import React from 'react';
-import {Box, Card, CardContent, CardHeader, CardMedia, Skeleton} from "@mui/material";
+import React, {useEffect, useState} from 'react';
+import {Box, Card, CardContent, CardHeader, CardMedia, Skeleton, Typography} from "@mui/material";
+import axios from "axios";
 
-const Home = () => {
+const Home = (props) => {
+    const {activeTab, setActiveTab} = props;
+    const [usersList, setUsersList] = useState([]);
+    const [isLoading, setIsLoading] = useState(true)
 
-    const loading = true;
+    useEffect(() => {
+        setIsLoading(true);
+        axios.get(`https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users`, {params: {"__example": activeTab}}).then(
+            (resp) => {
+                setUsersList(resp.data.items)
+                setIsLoading(false)
+            }
+        )
+    }, [activeTab])
+
+    console.log(usersList)
 
     return (
         <Box
             sx={{
                 p: "16px",
-                overflow: "hidden"
+                // overflowY: "auto",
             }}
         >
-            <Box sx={{width: "343px", display: "flex", alignItems: "center"}} elevation={0}>
+            {usersList.map(user => (
+                <Box key={user.id} sx={{width: "343px", display: "flex", alignItems: "center"}} elevation={0}>
+                    <Box
+                        sx={{p: "6px 0", mr: "16px"}}
+                    >
+                        {
+                            isLoading ? <Skeleton variant="circular" width={72} height={72}/> :
+                                <img
+                                    style={{width: "72px", height: "72px", borderRadius: "50%"}}
+                                    loading={'lazy'}
+                                    src={user.avatarUrl}
+                                    alt={user.firstName}/>
+                        }
+                    </Box>
+                    <Box>
+                        <Box>
+                            {
+                                isLoading ? (
+                                    <Skeleton variant="rounded" width={144} height={16}/>
+                                ) : (
+                                    <>
+                                        <Typography
+                                            component={"span"}
+                                            sx={{
+                                                fontSize: "16px",
+                                                lineHeight: "20px",
+                                                color: "#050510",
+                                            }}>
+                                            {user.firstName} {user.lastName}
+                                        </Typography>{" "}
+                                        <Typography component={"span"}
+                                                    sx={{
+                                                        fontSize: "14px",
+                                                        lineHeight: "18px",
+                                                        color: "#97979B",
+                                                    }}>
+                                            {user.userTag}
+                                        </Typography>
+                                    </>
+                                )
+                            }
+                        </Box>
+                        <Box mt={"6px"}>
+                            {
+                                isLoading ?
+                                    <Skeleton variant="rounded" width={80} height={12}/>
+                                    :
+                                    <Typography sx={{
+                                        fontSize: "13px",
+                                        lineHeight: "16px",
+                                        fontWeight: 400,
+                                        color: "#55555C"
+                                    }}>{user.position[0].toUpperCase() + user.position.slice(1)}</Typography>
+                            }
+                        </Box>
+                    </Box>
+                </Box>
+            ))}
+            {/*Skeleton*/}
+            {/* <Box sx={{width: "343px", display: "flex", alignItems: "center"}} elevation={0}>
                 <Box
                     sx={{p: "6px 0", mr: "16px"}}
                 >
                     {
-                        loading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
+                        isLoading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
                     }
                 </Box>
                 <Box>
                     <Box>
                         {
-                            loading ? (
+                            isLoading ? (
                                 <Skeleton variant="rounded" width={144} height={16}/>
                             ) : (
                                 'Ted'
@@ -32,7 +105,7 @@ const Home = () => {
                     </Box>
                     <Box mt={"6px"}>
                         {
-                            loading ?
+                            isLoading ?
                                 <Skeleton variant="rounded" width={80} height={12}/>
                                 :
                                 <></>
@@ -45,13 +118,13 @@ const Home = () => {
                     sx={{p: "6px 0", mr: "16px"}}
                 >
                     {
-                        loading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
+                        isLoading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
                     }
                 </Box>
                 <Box>
                     <Box>
                         {
-                            loading ? (
+                            isLoading ? (
                                 <Skeleton variant="rounded" width={144} height={16}/>
                             ) : (
                                 'Ted'
@@ -60,7 +133,7 @@ const Home = () => {
                     </Box>
                     <Box mt={"6px"}>
                         {
-                            loading ?
+                            isLoading ?
                                 <Skeleton variant="rounded" width={80} height={12}/>
                                 :
                                 <></>
@@ -73,13 +146,13 @@ const Home = () => {
                     sx={{p: "6px 0", mr: "16px"}}
                 >
                     {
-                        loading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
+                        isLoading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
                     }
                 </Box>
                 <Box>
                     <Box>
                         {
-                            loading ? (
+                            isLoading ? (
                                 <Skeleton variant="rounded" width={144} height={16}/>
                             ) : (
                                 'Ted'
@@ -88,7 +161,7 @@ const Home = () => {
                     </Box>
                     <Box mt={"6px"}>
                         {
-                            loading ?
+                            isLoading ?
                                 <Skeleton variant="rounded" width={80} height={12}/>
                                 :
                                 <></>
@@ -101,13 +174,13 @@ const Home = () => {
                     sx={{p: "6px 0", mr: "16px"}}
                 >
                     {
-                        loading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
+                        isLoading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
                     }
                 </Box>
                 <Box>
                     <Box>
                         {
-                            loading ? (
+                            isLoading ? (
                                 <Skeleton variant="rounded" width={144} height={16}/>
                             ) : (
                                 'Ted'
@@ -116,7 +189,7 @@ const Home = () => {
                     </Box>
                     <Box mt={"6px"}>
                         {
-                            loading ?
+                            isLoading ?
                                 <Skeleton variant="rounded" width={80} height={12}/>
                                 :
                                 <></>
@@ -129,13 +202,13 @@ const Home = () => {
                     sx={{p: "6px 0", mr: "16px"}}
                 >
                     {
-                        loading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
+                        isLoading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
                     }
                 </Box>
                 <Box>
                     <Box>
                         {
-                            loading ? (
+                            isLoading ? (
                                 <Skeleton variant="rounded" width={144} height={16}/>
                             ) : (
                                 'Ted'
@@ -144,7 +217,7 @@ const Home = () => {
                     </Box>
                     <Box mt={"6px"}>
                         {
-                            loading ?
+                            isLoading ?
                                 <Skeleton variant="rounded" width={80} height={12}/>
                                 :
                                 <></>
@@ -157,13 +230,13 @@ const Home = () => {
                     sx={{p: "6px 0", mr: "16px"}}
                 >
                     {
-                        loading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
+                        isLoading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
                     }
                 </Box>
                 <Box>
                     <Box>
                         {
-                            loading ? (
+                            isLoading ? (
                                 <Skeleton variant="rounded" width={144} height={16}/>
                             ) : (
                                 'Ted'
@@ -172,7 +245,7 @@ const Home = () => {
                     </Box>
                     <Box mt={"6px"}>
                         {
-                            loading ?
+                            isLoading ?
                                 <Skeleton variant="rounded" width={80} height={12}/>
                                 :
                                 <></>
@@ -185,13 +258,13 @@ const Home = () => {
                     sx={{p: "6px 0", mr: "16px"}}
                 >
                     {
-                        loading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
+                        isLoading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
                     }
                 </Box>
                 <Box>
                     <Box>
                         {
-                            loading ? (
+                            isLoading ? (
                                 <Skeleton variant="rounded" width={144} height={16}/>
                             ) : (
                                 'Ted'
@@ -200,7 +273,7 @@ const Home = () => {
                     </Box>
                     <Box mt={"6px"}>
                         {
-                            loading ?
+                            isLoading ?
                                 <Skeleton variant="rounded" width={80} height={12}/>
                                 :
                                 <></>
@@ -213,13 +286,13 @@ const Home = () => {
                     sx={{p: "6px 0", mr: "16px"}}
                 >
                     {
-                        loading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
+                        isLoading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
                     }
                 </Box>
                 <Box>
                     <Box>
                         {
-                            loading ? (
+                            isLoading ? (
                                 <Skeleton variant="rounded" width={144} height={16}/>
                             ) : (
                                 'Ted'
@@ -228,7 +301,7 @@ const Home = () => {
                     </Box>
                     <Box mt={"6px"}>
                         {
-                            loading ?
+                            isLoading ?
                                 <Skeleton variant="rounded" width={80} height={12}/>
                                 :
                                 <></>
@@ -241,13 +314,13 @@ const Home = () => {
                     sx={{p: "6px 0", mr: "16px"}}
                 >
                     {
-                        loading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
+                        isLoading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
                     }
                 </Box>
                 <Box>
                     <Box>
                         {
-                            loading ? (
+                            isLoading ? (
                                 <Skeleton variant="rounded" width={144} height={16}/>
                             ) : (
                                 'Ted'
@@ -256,122 +329,98 @@ const Home = () => {
                     </Box>
                     <Box mt={"6px"}>
                         {
-                            loading ?
+                            isLoading ?
                                 <Skeleton variant="rounded" width={80} height={12}/>
                                 :
                                 <></>
                         }
                     </Box>
                 </Box>
-            </Box><Box sx={{width: "343px", display: "flex", alignItems: "center"}} elevation={0}>
-            <Box
-                sx={{p: "6px 0", mr: "16px"}}
-            >
-                {
-                    loading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
-                }
             </Box>
-            <Box>
+            <Box sx={{width: "343px", display: "flex", alignItems: "center"}} elevation={0}>
+                <Box
+                    sx={{p: "6px 0", mr: "16px"}}
+                >
+                    {
+                        isLoading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
+                    }
+                </Box>
                 <Box>
-                    {
-                        loading ? (
-                            <Skeleton variant="rounded" width={144} height={16}/>
-                        ) : (
-                            'Ted'
-                        )
-                    }
-                </Box>
-                <Box mt={"6px"}>
-                    {
-                        loading ?
-                            <Skeleton variant="rounded" width={80} height={12}/>
-                            :
-                            <></>
-                    }
+                    <Box>
+                        {
+                            isLoading ? (
+                                <Skeleton variant="rounded" width={144} height={16}/>
+                            ) : (
+                                'Ted'
+                            )
+                        }
+                    </Box>
+                    <Box mt={"6px"}>
+                        {
+                            isLoading ?
+                                <Skeleton variant="rounded" width={80} height={12}/>
+                                :
+                                <></>
+                        }
+                    </Box>
                 </Box>
             </Box>
-        </Box><Box sx={{width: "343px", display: "flex", alignItems: "center"}} elevation={0}>
-            <Box
-                sx={{p: "6px 0", mr: "16px"}}
-            >
-                {
-                    loading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
-                }
-            </Box>
-            <Box>
+            <Box sx={{width: "343px", display: "flex", alignItems: "center"}} elevation={0}>
+                <Box
+                    sx={{p: "6px 0", mr: "16px"}}
+                >
+                    {
+                        isLoading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
+                    }
+                </Box>
                 <Box>
-                    {
-                        loading ? (
-                            <Skeleton variant="rounded" width={144} height={16}/>
-                        ) : (
-                            'Ted'
-                        )
-                    }
-                </Box>
-                <Box mt={"6px"}>
-                    {
-                        loading ?
-                            <Skeleton variant="rounded" width={80} height={12}/>
-                            :
-                            <></>
-                    }
+                    <Box>
+                        {
+                            isLoading ? (
+                                <Skeleton variant="rounded" width={144} height={16}/>
+                            ) : (
+                                'Ted'
+                            )
+                        }
+                    </Box>
+                    <Box mt={"6px"}>
+                        {
+                            isLoading ?
+                                <Skeleton variant="rounded" width={80} height={12}/>
+                                :
+                                <></>
+                        }
+                    </Box>
                 </Box>
             </Box>
-        </Box><Box sx={{width: "343px", display: "flex", alignItems: "center"}} elevation={0}>
-            <Box
-                sx={{p: "6px 0", mr: "16px"}}
-            >
-                {
-                    loading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
-                }
-            </Box>
-            <Box>
+            <Box sx={{width: "343px", display: "flex", alignItems: "center"}} elevation={0}>
+                <Box
+                    sx={{p: "6px 0", mr: "16px"}}
+                >
+                    {
+                        isLoading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
+                    }
+                </Box>
                 <Box>
-                    {
-                        loading ? (
-                            <Skeleton variant="rounded" width={144} height={16}/>
-                        ) : (
-                            'Ted'
-                        )
-                    }
+                    <Box>
+                        {
+                            isLoading ? (
+                                <Skeleton variant="rounded" width={144} height={16}/>
+                            ) : (
+                                'Ted'
+                            )
+                        }
+                    </Box>
+                    <Box mt={"6px"}>
+                        {
+                            isLoading ?
+                                <Skeleton variant="rounded" width={80} height={12}/>
+                                :
+                                <></>
+                        }
+                    </Box>
                 </Box>
-                <Box mt={"6px"}>
-                    {
-                        loading ?
-                            <Skeleton variant="rounded" width={80} height={12}/>
-                            :
-                            <></>
-                    }
-                </Box>
-            </Box>
-        </Box><Box sx={{width: "343px", display: "flex", alignItems: "center"}} elevation={0}>
-            <Box
-                sx={{p: "6px 0", mr: "16px"}}
-            >
-                {
-                    loading ? <Skeleton variant="circular" width={72} height={72}/> : <></>
-                }
-            </Box>
-            <Box>
-                <Box>
-                    {
-                        loading ? (
-                            <Skeleton variant="rounded" width={144} height={16}/>
-                        ) : (
-                            'Ted'
-                        )
-                    }
-                </Box>
-                <Box mt={"6px"}>
-                    {
-                        loading ?
-                            <Skeleton variant="rounded" width={80} height={12}/>
-                            :
-                            <></>
-                    }
-                </Box>
-            </Box>
-        </Box>
+            </Box>*/}
         </Box>
     );
 };
