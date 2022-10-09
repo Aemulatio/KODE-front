@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
-    Box,
+    Box, FormControlLabel,
     IconButton,
     InputAdornment,
     InputBase,
-    Paper,
+    Modal,
+    Paper, Radio, RadioGroup,
     SvgIcon,
     Tab,
     Tabs,
@@ -14,7 +15,54 @@ import {
 
 
 const TopAppBar = (props) => {
-    const {activeTab, setActiveTab, setSearch} = props;
+    const {activeTab, setActiveTab, setSearch, order, setOrder} = props;
+
+
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+
+    const OrderModal = () => {
+        const style = {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 400,
+            bgcolor: 'background.paper',
+            borderRadius: "20px",
+            p: 4,
+        };
+
+        let handleRadioChange;
+        
+        return (
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description">
+                <Box sx={style}>
+                    <Typography
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2">
+                       Сортировка
+                    </Typography>
+                    <RadioGroup
+                        aria-labelledby="demo-error-radios"
+                        name="quiz"
+                        value={order}
+                        onChange={handleRadioChange}
+                    >
+                        <FormControlLabel value="best" control={<Radio />} label="The best!" />
+                        <FormControlLabel value="worst" control={<Radio />} label="The worst." />
+                    </RadioGroup>
+                </Box>
+            </Modal>
+        )
+    }
 
     const tabs = [
         {
@@ -96,7 +144,9 @@ const TopAppBar = (props) => {
                     placeholder="Введи имя, тег, почту..."
                     onChange={e => handleSearchChange(e)}
                 />
-                <FilterIcon/>
+                <IconButton onClick={handleOpen}>
+                    <FilterIcon/>
+                </IconButton>
             </Paper>
             <Tabs value={activeTab}
                   onChange={handleChange}
@@ -118,6 +168,7 @@ const TopAppBar = (props) => {
                          sx={activeTab === tab.value ? {...activeTabStyle} : {...inactiveTabStyle}}/>
                 ))}
             </Tabs>
+            <OrderModal/>
         </Box>
     );
 };
