@@ -25,7 +25,7 @@ const TopAppBar = (props) => {
         fontWeight: '500',
         color: "#97979B",
     }
-    
+
     const activeTabStyle = {
         fontWeight: '600',
         color: "#050510",
