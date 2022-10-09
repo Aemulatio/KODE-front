@@ -59,8 +59,8 @@ const Home = (props) => {
                                     return el
                                 }
                             }).map(user => (
-                                <Link to={user.id} style={{textDecoration: "none"}}>
-                                    <Box key={user.id} sx={{width: "343px", display: "flex", alignItems: "center"}}
+                                <Link to={user.id} style={{textDecoration: "none"}} key={user.id} >
+                                    <Box sx={{width: "343px", display: "flex", alignItems: "center"}}
                                          elevation={0}>
                                         <Box sx={{p: "6px 0", mr: "16px"}}>
                                             <img
