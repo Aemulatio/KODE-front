@@ -2,11 +2,12 @@ import React from 'react';
 import TopAppBar from "../components/TopAppBar";
 import Home from "../components/Home";
 
-const Main = ({activeTab, setActiveTab, search, setSearch}) => {
+const Main = ({activeTab, setActiveTab, search, setSearch, order, setOrder}) => {
     return (
         <>
-            <TopAppBar activeTab={activeTab} setActiveTab={setActiveTab} setSearch={setSearch}/>
-            <Home activeTab={activeTab} search={search}/>
+            <TopAppBar activeTab={activeTab} setActiveTab={setActiveTab} setSearch={setSearch} setOrder={setOrder}
+                       order={order}/>
+            <Home activeTab={activeTab} search={search} order={order}/>
         </>
     );
 };

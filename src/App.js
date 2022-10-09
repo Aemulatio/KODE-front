@@ -11,12 +11,13 @@ function App() {
     setDefaultOptions({locale: ru})
     const [activeTab, setActiveTab] = useState("all");
     const [search, setSearch] = useState("")
+    const [order, setOrder] = useState()
 
     const router = createBrowserRouter([
         {
             path: "/",
             element: <Main activeTab={activeTab} search={search} setActiveTab={setActiveTab}
-                           setSearch={setSearch}/>,
+                           setSearch={setSearch} order={order} setOrder={setOrder}/>,
         },
         {
             path: "/:id",
