@@ -23,15 +23,15 @@ const TopAppBar = (props) => {
         },
         {
             label: "Designers",
-            value: "designers",
+            value: "design",
         },
         {
             label: "Analysts",
-            value: "analysts",
+            value: "analytics",
         },
         {
             label: "Managers",
-            value: "managers",
+            value: "management",
         },
         {
             label: "iOS",
@@ -77,7 +77,7 @@ const TopAppBar = (props) => {
             <Paper
                 elevation={0}
                 component="form"
-                fullwidth={true}
+                fullwidth="true"
                 sx={{
                     p: '8px 12px',
                     display: 'flex',
