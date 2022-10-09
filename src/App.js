@@ -9,7 +9,7 @@ function App() {
     return (
         <div className="App">
             <TopAppBar activeTab={activeTab} setActiveTab={setActiveTab}/>
-            <Home/>
+            <Home activeTab={activeTab} setActiveTab={setActiveTab}/>
         </div>
     );
 }
