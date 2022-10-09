@@ -1,12 +1,13 @@
-import TopAppBar from "./components/TopAppBar";
 import {useState} from "react";
-import Home from "./components/Home";
-import {Routes, Route, Outlet, Link} from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 import Main from "./pages/Main";
 import Detail from "./pages/Detail";
+import {ru} from 'date-fns/locale'
+import {setDefaultOptions} from "date-fns";
 
 
 function App() {
+    setDefaultOptions({locale: ru})
     const [activeTab, setActiveTab] = useState("all");
     const [search, setSearch] = useState("")
     return (
