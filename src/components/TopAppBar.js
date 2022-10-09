@@ -1,11 +1,36 @@
 import React from 'react';
-import {Box, IconButton, InputAdornment, InputBase, Paper, SvgIcon, TextField, Typography} from "@mui/material";
+import {
+    Box,
+    IconButton,
+    InputAdornment,
+    InputBase,
+    Paper,
+    SvgIcon,
+    Tab,
+    Tabs,
+    TextField,
+    Typography
+} from "@mui/material";
 
-function MenuIcon() {
-    return null;
-}
 
-const TopAppBar = () => {
+const TopAppBar = (props) => {
+    // const {activeTab, setActiveTab} = props;
+    let activeTab = "all";
+
+    function handleChange(val) {
+        // setActiveTab(val);
+    }
+
+    const inactiveTabStyle = {
+        fontWeight: '500',
+        color: "#97979B",
+    }
+    
+    const activeTabStyle = {
+        fontWeight: '600',
+        color: "#050510",
+    }
+
     return (
         <Box sx={{
             p: "16px"
@@ -24,7 +49,7 @@ const TopAppBar = () => {
             <Paper
                 elevation={0}
                 component="form"
-                fullwidth
+                fullwidth={true}
                 sx={{
                     p: '8px 12px',
                     display: 'flex',
@@ -40,6 +65,28 @@ const TopAppBar = () => {
                 />
                 <FilterIcon/>
             </Paper>
+            <Tabs value={activeTab}
+                  onChange={handleChange}
+                  textColor={"inherit"}
+                  sx={{
+                      color: "#050510",
+                      fontSize: "15px",
+                      lineHeight: "20px",
+                  }}
+                  TabIndicatorProps={{
+                      style: {
+                          background: "#6534FF",
+                          height: "2px",
+                      }
+                  }}
+            >
+                <Tab label="Все" value={"all"} sx={{...activeTabStyle}}/>
+                <Tab label="Designers" value={"designers"} sx={{...inactiveTabStyle}}/>
+                <Tab label="Analysts" value={"analysts"} sx={{...inactiveTabStyle}}/>
+                <Tab label="Managers" value={"manager"} sx={{...inactiveTabStyle}}/>
+                <Tab label="iOS" value={"ios"} sx={{...inactiveTabStyle}}/>
+                <Tab label="Android" value={"android"} sx={{...inactiveTabStyle}}/>
+            </Tabs>
         </Box>
     );
 };
