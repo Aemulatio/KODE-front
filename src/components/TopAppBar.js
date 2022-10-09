@@ -14,11 +14,37 @@ import {
 
 
 const TopAppBar = (props) => {
-    // const {activeTab, setActiveTab} = props;
-    let activeTab = "all";
+    const {activeTab, setActiveTab} = props;
 
-    function handleChange(val) {
-        // setActiveTab(val);
+    const tabs = [
+        {
+            label: "Все",
+            value: "all",
+        },
+        {
+            label: "Designers",
+            value: "designers",
+        },
+        {
+            label: "Analysts",
+            value: "analysts",
+        },
+        {
+            label: "Managers",
+            value: "managers",
+        },
+        {
+            label: "iOS",
+            value: "ios",
+        },
+        {
+            label: "Android",
+            value: "android",
+        },
+    ]
+
+    function handleChange(event, newValue) {
+        setActiveTab(newValue);
     }
 
     const inactiveTabStyle = {
@@ -80,12 +106,10 @@ const TopAppBar = (props) => {
                       }
                   }}
             >
-                <Tab label="Все" value={"all"} sx={{...activeTabStyle}}/>
-                <Tab label="Designers" value={"designers"} sx={{...inactiveTabStyle}}/>
-                <Tab label="Analysts" value={"analysts"} sx={{...inactiveTabStyle}}/>
-                <Tab label="Managers" value={"manager"} sx={{...inactiveTabStyle}}/>
-                <Tab label="iOS" value={"ios"} sx={{...inactiveTabStyle}}/>
-                <Tab label="Android" value={"android"} sx={{...inactiveTabStyle}}/>
+                {tabs.map(tab => (
+                    <Tab label={tab.label} value={tab.value} key={tab.label}
+                         sx={activeTab === tab.value ? {...activeTabStyle} : {...inactiveTabStyle}}/>
+                ))}
             </Tabs>
         </Box>
     );
