@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, Typography} from "@mui/material";
 import Star from "../images/star.png"
 import Phone from "../images/phone.png"
-import {format} from "date-fns";
+import {format, formatISO} from "date-fns";
 
 const {differenceInYears, parse} = require("date-fns")
 
@@ -34,7 +34,8 @@ const DetailBody = ({user}) => {
                     alignItems: "center",
                 }}>
                     <img src={Star} alt="" style={{paddingRight: "14px"}}/>
-                    <Typography sx={primaryText}>{format(user.birthday, "dd MMMM yyyy")}</Typography>
+                    <Typography
+                        sx={primaryText}>{format(parse(user.birthday, "yyyy-MM-dd", new Date()), "dd MMMM yyyy")}</Typography>
                 </Box>
                 <Typography sx={{...primaryText, color: "#97979B"}}>{calculateAge(user.birthday)} года</Typography>
             </Box>
@@ -45,6 +46,7 @@ const DetailBody = ({user}) => {
                 <Box sx={{
                     display: "flex",
                     alignItems: "center",
+                    pt: "22px",
                 }}>
                     <img src={Phone} alt="" style={{paddingRight: "14px"}}/>
                     <Typography sx={primaryText}>{user.phone}</Typography>
