@@ -59,7 +59,9 @@ const TopAppBar = (props) => {
 
     return (
         <Box sx={{
-            p: "16px"
+            p: "16px",
+            pb: 0,
+            borderBottom: "1px solid #C3C3C6"
         }}>
             <Typography component={"p"} sx={{
                 pb: "16px",
