@@ -36,7 +36,7 @@ const DetailBody = ({user}) => {
                     <img src={Star} alt="" style={{paddingRight: "14px"}}/>
                     <Typography sx={primaryText}>{format(user.birthday, "dd MMMM yyyy")}</Typography>
                 </Box>
-                <Typography sx={primaryText}>{calculateAge(user.birthday)} года</Typography>
+                <Typography sx={{...primaryText, color: "#97979B"}}>{calculateAge(user.birthday)} года</Typography>
             </Box>
 
             <Box
@@ -47,12 +47,7 @@ const DetailBody = ({user}) => {
                     alignItems: "center",
                 }}>
                     <img src={Phone} alt="" style={{paddingRight: "14px"}}/>
-                    <Typography sx={{
-                        fontWeight: 500,
-                        fontSize: "16px",
-                        lineHeight: "20px",
-                        color: "#050510"
-                    }}>{user.phone}</Typography>
+                    <Typography sx={primaryText}>{user.phone}</Typography>
                 </Box>
             </Box>
         </Box>
