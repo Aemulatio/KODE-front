@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Card, CardContent, CardHeader, CardMedia, Skeleton, Typography} from "@mui/material";
 import axios from "axios";
-import EmptySearch from "../components/EmptySearch";
+import EmptySearch from "./EmptySearch";
 import {Link} from "react-router-dom";
 
 const Home = (props) => {
