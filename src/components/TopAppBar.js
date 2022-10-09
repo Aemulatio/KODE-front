@@ -14,7 +14,7 @@ import {
 
 
 const TopAppBar = (props) => {
-    const {activeTab, setActiveTab} = props;
+    const {activeTab, setActiveTab, setSearch} = props;
 
     const tabs = [
         {
@@ -45,6 +45,10 @@ const TopAppBar = (props) => {
 
     function handleChange(event, newValue) {
         setActiveTab(newValue);
+    }
+
+    const handleSearchChange = (e) => {
+        setSearch(e.target.value.toLowerCase().trim())
     }
 
     const inactiveTabStyle = {
@@ -88,8 +92,9 @@ const TopAppBar = (props) => {
             >
                 <SearchIcon/>
                 <InputBase
-                    sx={{ml: 1, flex: 1}}
+                    sx={{ml: 1, flex: 1, caretColor: "#6534FF"}}
                     placeholder="Введи имя, тег, почту..."
+                    onChange={e => handleSearchChange(e)}
                 />
                 <FilterIcon/>
             </Paper>
