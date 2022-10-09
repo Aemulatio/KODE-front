@@ -1,5 +1,6 @@
 import TopAppBar from "./components/TopAppBar";
 import {useState} from "react";
+import Home from "./pages/Home";
 
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
     return (
         <div className="App">
             <TopAppBar activeTab={activeTab} setActiveTab={setActiveTab}/>
+            <Home/>
         </div>
     );
 }
