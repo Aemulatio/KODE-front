@@ -4,7 +4,6 @@ import BackArrow from "../images/BackArrow.png"
 import {Link} from "react-router-dom";
 
 const DetailHeader = ({user}) => {
-    console.log(user)
     return (
         <Box sx={{background: "#F7F7F8"}}>
             <Box
@@ -34,7 +33,7 @@ const DetailHeader = ({user}) => {
                 left: 0, right: 0, top: 0, bottom: 0,
             }}>
                 <img
-                    style={{width: "104px", height: "104px", borderRadius: "50%", paddingBottom: "24px"}}
+                    style={{width: "104px", height: "104px", borderRadius: "50%", marginBottom: "24px"}}
                     loading={'lazy'}
                     src={user?.avatarUrl}
                     alt={user?.firstName}/>
