@@ -21,8 +21,6 @@ const Home = (props) => {
         )
     }, [activeTab])
 
-    console.log(usersList)
-    console.log(order)
     return (
         <Box
             sx={{

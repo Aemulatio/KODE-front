@@ -1,15 +1,13 @@
 import React, {useState} from 'react';
 import {
-    Box, FormControlLabel, FormLabel,
+    Box,
     IconButton,
-    InputAdornment,
     InputBase,
     Modal,
-    Paper, Radio, RadioGroup,
+    Paper, RadioGroup,
     SvgIcon,
     Tab,
     Tabs,
-    TextField,
     Typography
 } from "@mui/material";
 
@@ -19,14 +17,6 @@ const TopAppBar = (props) => {
 
     const title2SemiBold = {
         textAlign: 'center',
-    }
-
-    const headlineMedium = {
-        fontFamily: "Inter",
-        fontWeight: 500,
-        fontSize: "16px",
-        lineHeight: "20px",
-        color: "#050510"
     }
 
     const [open, setOpen] = useState(false);
@@ -131,17 +121,6 @@ const TopAppBar = (props) => {
         setSearch(e.target.value.toLowerCase().trim())
     }
 
-    const inactiveTabStyle = {
-        fontWeight: '500',
-        color: "#97979B",
-    }
-
-    const activeTabStyle = {
-        fontWeight: '600',
-        color: "#050510",
-    }
-
-    console.log(order)
     return (
         <Box sx={{
             p: "16px",
