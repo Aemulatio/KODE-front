@@ -33,7 +33,7 @@ const Home = (props) => {
                 p: "16px",
                 position: "relative",
                 height: "79.8vh",
-                // overflowY: "auto",
+                overflowY: "auto",
                 display: "flex",
                 flexDirection: "column",
 
@@ -42,7 +42,6 @@ const Home = (props) => {
             {isLoading
                 ?
                 <>
-                    <SkeletonItem/>
                     <SkeletonItem/>
                     <SkeletonItem/>
                     <SkeletonItem/>
