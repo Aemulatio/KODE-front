@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+* {
+    font-family: "Inter" !important;
+}
+
 body {
     padding: 0;
     margin: 0;
@@ -77,4 +81,28 @@ body {
     font-size: 16px;
     line-height: 20px;
     color: #050510;
+}
+
+
+/*.horizontalDivider:before {*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    bottom: 50%;*/
+/*    content: "";*/
+/*    display: inline;*/
+/*    width: 100%;*/
+/*    color: #C3C3C6;*/
+/*    height: 1px;*/
+/*    background: #C3C3C6;*/
+/*}*/
+
+.horizontalDivider {
+    top: 50%;
+    bottom: 50%;
+    content: "";
+    display: block;
+    width: 100%;
+    color: #C3C3C6;
+    height: 1px;
+    background: #C3C3C6;
 }
