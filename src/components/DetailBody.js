@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, Typography} from "@mui/material";
 import Star from "../images/star.png"
 import Phone from "../images/phone.png"
-import {format, formatISO} from "date-fns";
+import {format} from "date-fns";
 
 const {differenceInYears, parse} = require("date-fns")
 
@@ -13,13 +13,6 @@ function calculateAge(dob) {
 }
 
 const DetailBody = ({user}) => {
-    const primaryText = {
-        fontWeight: 500,
-        fontSize: "16px",
-        lineHeight: "20px",
-        color: "#050510",
-        fontFamily: 'Inter',
-    }
     return (
         <Box p={"8px 16px"}>
             <Box sx={{
@@ -34,10 +27,11 @@ const DetailBody = ({user}) => {
                     alignItems: "center",
                 }}>
                     <img src={Star} alt="" style={{paddingRight: "14px"}}/>
-                    <Typography
-                        sx={primaryText}>{format(parse(user.birthday, "yyyy-MM-dd", new Date()), "dd MMMM yyyy")}</Typography>
+                    <Typography className={'headlineMedium textPrimary'}>
+                        {format(parse(user.birthday, "yyyy-MM-dd", new Date()), "dd MMMM yyyy")}
+                    </Typography>
                 </Box>
-                <Typography sx={{...primaryText, color: "#97979B"}}>{calculateAge(user.birthday)} года</Typography>
+                <Typography className={'headlineMedium textTetriary'}>{calculateAge(user.birthday)} года</Typography>
             </Box>
 
             <Box
@@ -49,7 +43,7 @@ const DetailBody = ({user}) => {
                     pt: "22px",
                 }}>
                     <img src={Phone} alt="" style={{paddingRight: "14px"}}/>
-                    <Typography sx={primaryText}>{user.phone}</Typography>
+                    <Typography className={'headlineMedium textPrimary'}>{user.phone}</Typography>
                 </Box>
             </Box>
         </Box>
