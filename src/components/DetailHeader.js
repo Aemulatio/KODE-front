@@ -33,42 +33,27 @@ const DetailHeader = ({user}) => {
                 left: 0, right: 0, top: 0, bottom: 0,
             }}>
                 <img
-                    style={{width: "104px", height: "104px", borderRadius: "50%", marginBottom: "24px"}}
+                    style={{marginBottom: "24px"}}
+                    className={'detailImage'}
                     loading={'lazy'}
                     src={user?.avatarUrl}
                     alt={user?.firstName}/>
 
                 <Typography
                     component={"p"}
-                    sx={{
-                        fontWeight: 700,
-                        fontSize: "24px",
-                        lineHeight: "28px",
-                        textAlign: "center",
-                        color: "#050510",
-                        pb: "12px",
-                        pt: "8px"
-                    }}>
+                    sx={{pb: "12px", pt: "8px"}}
+                    className={"title1Bold textPrimary"}
+                >
                     {`${user?.firstName} ${user?.lastName} `}
                     <Typography
                         component={"span"}
-                        sx={{
-                            fontWeight: 400,
-                            fontSize: "17px",
-                            lineHeight: "22px",
-                            color: "#97979B",
-                        }}
+                        className={'textTetriary title3Regular'}
                     >{user?.userTag}</Typography>
                 </Typography>
                 <Typography
                     component={"p"}
-                    sx={{
-                        fontWeight: 400,
-                        fontSize: "13px",
-                        lineHeight: "16px",
-                        textAlign: "center",
-                        color: "#55555C"
-                    }}
+                    className={'caption1Regular textSecondary'}
+                    sx={{textAlign: "center",}}
                 >
                     {user?.position}
                 </Typography>

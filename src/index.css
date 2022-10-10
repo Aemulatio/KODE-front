@@ -98,7 +98,7 @@ body {
     line-height: 24px !important;
 }
 
-.title3SemiBold{
+.title3SemiBold {
     font-family: 'Inter' !important;
     font-style: normal !important;
     font-weight: 600 !important;
@@ -106,7 +106,7 @@ body {
     line-height: 22px !important;
 }
 
-.headlineRegular{
+.headlineRegular {
     font-family: 'Inter' !important;
     font-style: normal !important;
     font-weight: 400 !important;
@@ -114,6 +114,22 @@ body {
     line-height: 20px !important;
 }
 
+
+.detailImage {
+    width: 104px !important;
+    height: 104px !important;
+    border-radius: 64px !important;
+
+    filter: drop-shadow(0px 1px 5px rgba(22, 30, 52, 0.039)) drop-shadow(0px 8px 12px rgba(22, 30, 52, 0.08)) !important;
+}
+
+.title3Regular {
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 17px !important;
+    line-height: 22px !important;
+}
 
 /*-------------------------------------------------------------------*/
 .horizontalDivider {
