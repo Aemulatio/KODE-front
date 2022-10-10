@@ -11,7 +11,7 @@ function App() {
     setDefaultOptions({locale: ru})
     const [activeTab, setActiveTab] = useState("all");
     const [search, setSearch] = useState("")
-    const [order, setOrder] = useState()
+    const [order, setOrder] = useState('firstName')
 
     const router = createBrowserRouter([
         {
