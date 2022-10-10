@@ -4,16 +4,6 @@ import {Box, Typography} from "@mui/material";
 import {format, parse} from "date-fns";
 
 const UserItem = ({user, order}) => {
-    const textRegular = {
-        fontWeight: 400,
-        fontSize: "15px",
-        lineHeight: "20px",
-        color: "#55555C",
-        fontFamily: 'Inter',
-        textAlign: "right",
-    }
-
-
     return (
         <>
             <Link to={user.id} style={{textDecoration: "none"}} key={user.id}>
@@ -22,7 +12,7 @@ const UserItem = ({user, order}) => {
 
                     <Box sx={{p: "6px 0", mr: "16px"}}>
                         <img
-                            style={{width: "72px", height: "72px", borderRadius: "50%"}}
+                            className={"listImage"}
                             loading={'lazy'}
                             src={user.avatarUrl}
                             alt={user.firstName}/>
@@ -40,37 +30,26 @@ const UserItem = ({user, order}) => {
                             <Box>
                                 <Typography
                                     component={"span"}
-                                    sx={{
-                                        fontSize: "16px",
-                                        lineHeight: "20px",
-                                        color: "#050510",
-                                    }}>
+                                    className={"headlineMedium textPrimary"}>
                                     {user.firstName} {user.lastName}
                                 </Typography>{" "}
                                 <Typography
                                     component={"span"}
-                                    sx={{
-                                        fontSize: "14px",
-                                        lineHeight: "18px",
-                                        color: "#97979B",
-                                    }}>
+                                    className={'subheadMedium textTetriary'}>
                                     {user.userTag}
                                 </Typography>
                             </Box>
 
                             <Box mt={"6px"}>
-                                <Typography sx={{
-                                    fontSize: "13px",
-                                    lineHeight: "16px",
-                                    fontWeight: 400,
-                                    color: "#55555C"
-                                }}>{user.position[0].toUpperCase() + user.position.slice(1)}</Typography>
+                                <Typography
+                                    className={'caption1Regular textSecondary'}>{user.position[0].toUpperCase() + user.position.slice(1)}</Typography>
                             </Box>
                         </Box>
                         {order === 'birthday' &&
                             <Box>
                                 <Typography
-                                    sx={textRegular}>{format(parse(user.birthday, "yyyy-MM-dd", new Date()), "dd MMM").slice(0, -1)}</Typography>
+                                    className={'textSecondary textRegular'}
+                                    >{format(parse(user.birthday, "yyyy-MM-dd", new Date()), "dd MMM").slice(0, -1)}</Typography>
                             </Box>
                         }
 

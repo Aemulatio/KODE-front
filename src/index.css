@@ -21,6 +21,13 @@ body {
     line-height: 20px !important;
 }
 
+.subheadMedium {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+}
 
 .textPrimary {
     color: #050510 !important;
@@ -32,6 +39,10 @@ body {
 
 .textDefaultSecondary {
     color: #C3C3C6 !important;
+}
+
+.textSecondary {
+    color: #55555C !important;
 }
 
 .title1Bold {
@@ -55,6 +66,28 @@ body {
     font-weight: 600 !important;
     font-size: 15px !important;
     line-height: 20px !important;
+}
+
+.listImage {
+    width: 72px !important;
+    height: 72px !important;
+    border-radius: 50% !important;
+}
+
+.caption1Regular {
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 13px !important;
+    line-height: 16px !important;
+}
+
+.textRegular{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
 }
 
 
