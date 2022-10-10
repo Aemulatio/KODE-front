@@ -1,18 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Card, CardContent, CardHeader, CardMedia, Skeleton, Typography} from "@mui/material";
+import {Box, Skeleton} from "@mui/material";
 import axios from "axios";
 import EmptySearch from "./EmptySearch";
-import {Link} from "react-router-dom";
-import UserItem from "./UserItem";
+import UserList from "./UserList";
+import UserListBDSort from "./UserListBDSort";
 
 const Home = (props) => {
     const {activeTab, search, order} = props;
     const [usersList, setUsersList] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
 
-    const sortItems = (a, b) => {
-        return (a[order] > b[order]) ? 1 : ((b[order] > a[order]) ? -1 : 0)
-    }
 
     useEffect(() => {
         setIsLoading(true);
@@ -53,21 +50,33 @@ const Home = (props) => {
                 </>
                 :
                 (<>
-                        {
-                            usersList.sort(sortItems).filter(el => {
-                                if (el.firstName.toLowerCase().indexOf(search) !== -1) {
-                                    return el
-                                }
-                                if (el.lastName.toLowerCase().indexOf(search) !== -1) {
-                                    return el
-                                }
-                                if (el.userTag.toLowerCase().indexOf(search) !== -1) {
-                                    return el
-                                }
-                            }).map(user => (
-                                <UserItem user={user}/>
-                            ))
-                        }
+                        {order === "firstName" ?
+                            <UserList
+                                users={usersList.filter(el => {
+                                    if (el.firstName.toLowerCase().indexOf(search) !== -1) {
+                                        return el
+                                    }
+                                    if (el.lastName.toLowerCase().indexOf(search) !== -1) {
+                                        return el
+                                    }
+                                    if (el.userTag.toLowerCase().indexOf(search) !== -1) {
+                                        return el
+                                    }
+                                })}
+                            />
+                            : <UserListBDSort
+                                users={usersList.filter(el => {
+                                    if (el.firstName.toLowerCase().indexOf(search) !== -1) {
+                                        return el
+                                    }
+                                    if (el.lastName.toLowerCase().indexOf(search) !== -1) {
+                                        return el
+                                    }
+                                    if (el.userTag.toLowerCase().indexOf(search) !== -1) {
+                                        return el
+                                    }
+                                })}
+                            />}
                         {
                             usersList.filter(el => {
                                 if (el.firstName.toLowerCase().indexOf(search) !== -1) {
