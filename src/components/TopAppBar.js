@@ -30,10 +30,11 @@ const TopAppBar = (props) => {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: 400,
+            maxWidth: "373px",
+            minWidth: "300px",
             bgcolor: '#FFFFFF',
             borderRadius: "20px",
-            p: "24px 16px 8px",
+            p: "24px 16px 8px"
         };
 
         const handleRadioChange = (event, newValue) => {
@@ -46,7 +47,7 @@ const TopAppBar = (props) => {
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description">
-                <Box sx={style}>
+                <Box sx={style} className={"modal"}>
                     <Typography
                         id="modal-modal-title"
                         variant="h6"

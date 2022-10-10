@@ -154,6 +154,17 @@ body {
     background: #C3C3C6;
 }
 
+.modal {
+    width: 373px;
+}
+
+@media only screen and (max-width: 426px) {
+    .modal {
+        width: 300px;
+    }
+}
+
+
 /* The container */
 .container {
     display: block;
