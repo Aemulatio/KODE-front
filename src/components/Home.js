@@ -4,12 +4,14 @@ import axios from "axios";
 import EmptySearch from "./EmptySearch";
 import UserList from "./UserList";
 import UserListBDSort from "./UserListBDSort";
+import CriticalError from "./CriticalError";
 
 const Home = (props) => {
     const {activeTab, search, order} = props;
     const [usersList, setUsersList] = useState([]);
-    const [isLoading, setIsLoading] = useState(true)
-
+    const [isLoading, setIsLoading] = useState(true);
+    const [isError, setIsError] = useState(false);
+    const [refresh, setRefresh] = useState(null);
 
     useEffect(() => {
         setIsLoading(true);
@@ -18,8 +20,12 @@ const Home = (props) => {
                 setUsersList(resp.data.items)
                 setIsLoading(false)
             }
-        )
-    }, [activeTab])
+        ).catch(err => {
+            setIsError(true);
+            setIsLoading(false)
+            console.log(err)
+        })
+    }, [activeTab, refresh])
 
     return (
         <Box
@@ -46,53 +52,59 @@ const Home = (props) => {
                     <SkeletonItem/>
                     <SkeletonItem/>
                 </>
-                :
-                (<>
-                        {order === "firstName" ?
-                            <UserList
-                                users={usersList.filter(el => {
-                                    if (el.firstName.toLowerCase().indexOf(search) !== -1) {
-                                        return el
-                                    }
-                                    if (el.lastName.toLowerCase().indexOf(search) !== -1) {
-                                        return el
-                                    }
-                                    if (el.userTag.toLowerCase().indexOf(search) !== -1) {
-                                        return el
-                                    }
-                                })}
-                            />
-                            : <UserListBDSort
-                                users={usersList.filter(el => {
-                                    if (el.firstName.toLowerCase().indexOf(search) !== -1) {
-                                        return el
-                                    }
-                                    if (el.lastName.toLowerCase().indexOf(search) !== -1) {
-                                        return el
-                                    }
-                                    if (el.userTag.toLowerCase().indexOf(search) !== -1) {
-                                        return el
-                                    }
-                                })}
-                            />}
-                        {
-                            usersList.filter(el => {
-                                if (el.firstName.toLowerCase().indexOf(search) !== -1) {
-                                    return el
-                                }
-                                if (el.lastName.toLowerCase().indexOf(search) !== -1) {
-                                    return el
-                                }
-                                if (el.userTag.toLowerCase().indexOf(search) !== -1) {
-                                    return el
-                                }
-                            }).length === 0 &&
+                : (
+                    isError === false
+                        ? (
                             <>
-                                <EmptySearch/>
+                                {order === "firstName" ?
+                                    <UserList
+                                        users={usersList.filter(el => {
+                                            if (el.firstName.toLowerCase().indexOf(search) !== -1) {
+                                                return el
+                                            }
+                                            if (el.lastName.toLowerCase().indexOf(search) !== -1) {
+                                                return el
+                                            }
+                                            if (el.userTag.toLowerCase().indexOf(search) !== -1) {
+                                                return el
+                                            }
+                                        })}
+                                    />
+                                    : <UserListBDSort
+                                        users={usersList.filter(el => {
+                                            if (el.firstName.toLowerCase().indexOf(search) !== -1) {
+                                                return el
+                                            }
+                                            if (el.lastName.toLowerCase().indexOf(search) !== -1) {
+                                                return el
+                                            }
+                                            if (el.userTag.toLowerCase().indexOf(search) !== -1) {
+                                                return el
+                                            }
+                                        })}
+                                    />}
+                                {
+                                    usersList.filter(el => {
+                                        if (el.firstName.toLowerCase().indexOf(search) !== -1) {
+                                            return el
+                                        }
+                                        if (el.lastName.toLowerCase().indexOf(search) !== -1) {
+                                            return el
+                                        }
+                                        if (el.userTag.toLowerCase().indexOf(search) !== -1) {
+                                            return el
+                                        }
+                                    }).length === 0 &&
+                                    <>
+                                        <EmptySearch/>
+                                    </>
+                                }
                             </>
-                        }
-                    </>
-                )}
+                        ) : (
+                            <CriticalError setRefresh={setRefresh}/>
+                        )
+                )
+            }
         </Box>
     );
 };
