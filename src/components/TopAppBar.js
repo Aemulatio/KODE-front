@@ -18,10 +18,6 @@ const TopAppBar = (props) => {
     const {activeTab, setActiveTab, setSearch, order, setOrder} = props;
 
     const title2SemiBold = {
-        fontFamily: "Inter",
-        fontWeight: 600,
-        fontSize: "20px",
-        lineHeight: "24px",
         textAlign: 'center',
     }
 
@@ -66,6 +62,7 @@ const TopAppBar = (props) => {
                         variant="h6"
                         component="h2"
                         sx={title2SemiBold}
+                        className={"title2SemiBold textPrimary"}
                     >
                         Сортировка
                     </Typography>
@@ -261,7 +258,7 @@ function CustomRadio({text, name, value, order, setOrder}) {
                 p: "20px 2px"
             }}
         >
-            <label className="container headlineMedium">{text}
+            <label className="container headlineMedium textPrimary">{text}
                 <input type="radio" defaultValue={value} name={name} defaultChecked={order === value}
                        onChange={e => handleChange(e)}
                 />

@@ -22,11 +22,11 @@ body {
 }
 
 .subheadMedium {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 18px;
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
 }
 
 .textPrimary {
@@ -82,12 +82,20 @@ body {
     line-height: 16px !important;
 }
 
-.textRegular{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 20px;
+.textRegular {
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 15px !important;
+    line-height: 20px !important;
+}
+
+.title2SemiBold {
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    font-size: 20px !important;
+    line-height: 24px !important;
 }
 
 
