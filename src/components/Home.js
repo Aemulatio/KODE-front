@@ -3,11 +3,16 @@ import {Box, Card, CardContent, CardHeader, CardMedia, Skeleton, Typography} fro
 import axios from "axios";
 import EmptySearch from "./EmptySearch";
 import {Link} from "react-router-dom";
+import UserItem from "./UserItem";
 
 const Home = (props) => {
-    const {activeTab, search} = props;
+    const {activeTab, search, order} = props;
     const [usersList, setUsersList] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
+
+    const sortItems = (a, b) => {
+        return (a[order] > b[order]) ? 1 : ((b[order] > a[order]) ? -1 : 0)
+    }
 
     useEffect(() => {
         setIsLoading(true);
@@ -20,6 +25,7 @@ const Home = (props) => {
     }, [activeTab])
 
     console.log(usersList)
+    console.log(order)
     return (
         <Box
             sx={{
@@ -48,7 +54,7 @@ const Home = (props) => {
                 :
                 (<>
                         {
-                            usersList.filter(el => {
+                            usersList.sort(sortItems).filter(el => {
                                 if (el.firstName.toLowerCase().indexOf(search) !== -1) {
                                     return el
                                 }
@@ -59,48 +65,7 @@ const Home = (props) => {
                                     return el
                                 }
                             }).map(user => (
-                                <Link to={user.id} style={{textDecoration: "none"}} key={user.id} >
-                                    <Box sx={{width: "343px", display: "flex", alignItems: "center"}}
-                                         elevation={0}>
-                                        <Box sx={{p: "6px 0", mr: "16px"}}>
-                                            <img
-                                                style={{width: "72px", height: "72px", borderRadius: "50%"}}
-                                                loading={'lazy'}
-                                                src={user.avatarUrl}
-                                                alt={user.firstName}/>
-                                        </Box>
-                                        <Box>
-                                            <Box>
-                                                <Typography
-                                                    component={"span"}
-                                                    sx={{
-                                                        fontSize: "16px",
-                                                        lineHeight: "20px",
-                                                        color: "#050510",
-                                                    }}>
-                                                    {user.firstName} {user.lastName}
-                                                </Typography>{" "}
-                                                <Typography
-                                                    component={"span"}
-                                                    sx={{
-                                                        fontSize: "14px",
-                                                        lineHeight: "18px",
-                                                        color: "#97979B",
-                                                    }}>
-                                                    {user.userTag}
-                                                </Typography>
-                                            </Box>
-                                            <Box mt={"6px"}>
-                                                <Typography sx={{
-                                                    fontSize: "13px",
-                                                    lineHeight: "16px",
-                                                    fontWeight: 400,
-                                                    color: "#55555C"
-                                                }}>{user.position[0].toUpperCase() + user.position.slice(1)}</Typography>
-                                            </Box>
-                                        </Box>
-                                    </Box>
-                                </Link>
+                                <UserItem user={user}/>
                             ))
                         }
                         {
