@@ -154,11 +154,7 @@ const TopAppBar = (props) => {
             <Typography component={"p"} sx={{
                 pb: "16px",
                 pl: "8px",
-                fontFamily: "Inter",
-                fontWeight: "bold",
-                fontSize: "24px",
-                lineHeight: "28px"
-            }}>
+            }} className={'title1Bold textPrimary'}>
                 Поиск
             </Typography>
 
@@ -167,7 +163,9 @@ const TopAppBar = (props) => {
                 component="form"
                 fullwidth="true"
                 sx={{
-                    p: '8px 12px',
+                    p: '0px 12px',
+                    mt: "8px",
+                    mb: "8px",
                     display: 'flex',
                     alignItems: 'center',
                     background: "#F7F7F8",
@@ -178,12 +176,14 @@ const TopAppBar = (props) => {
                 <InputBase
                     sx={{ml: 1, flex: 1, caretColor: "#6534FF"}}
                     placeholder="Введи имя, тег, почту..."
+                    className={'textMedium textDefaultSecondary'}
                     onChange={e => handleSearchChange(e)}
                 />
                 <IconButton onClick={handleOpen}>
                     <FilterIcon/>
                 </IconButton>
             </Paper>
+
             <Tabs value={activeTab}
                   onChange={handleChange}
                   textColor={"inherit"}
@@ -201,7 +201,8 @@ const TopAppBar = (props) => {
             >
                 {tabs.map(tab => (
                     <Tab label={tab.label} value={tab.value} key={tab.label}
-                         sx={activeTab === tab.value ? {...activeTabStyle} : {...inactiveTabStyle}}/>
+                         className={activeTab === tab.value ? "textPrimary textSemibold" : "textTetriary textMedium"}
+                    />
                 ))}
             </Tabs>
             <OrderModal/>
