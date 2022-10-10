@@ -69,14 +69,17 @@ const TopAppBar = (props) => {
                     >
                         Сортировка
                     </Typography>
-                    <IconButton sx={{
-                        width: "24px",
-                        height: "24px",
-                        background: "#F7F7F8",
-                        position: "absolute",
-                        right: "23px",
-                        top: '24px'
-                    }}>
+                    <IconButton
+                        sx={{
+                            width: "24px",
+                            height: "24px",
+                            background: "#F7F7F8",
+                            position: "absolute",
+                            right: "23px",
+                            top: '24px'
+                        }}
+                        onClick={handleClose}
+                    >
                         <CrossIcon/>
                     </IconButton>
                     <RadioGroup
