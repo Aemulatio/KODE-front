@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {
-    Box, FormControlLabel,
+    Box, FormControlLabel, FormLabel,
     IconButton,
     InputAdornment,
     InputBase,
@@ -17,6 +17,21 @@ import {
 const TopAppBar = (props) => {
     const {activeTab, setActiveTab, setSearch, order, setOrder} = props;
 
+    const title2SemiBold = {
+        fontFamily: "Inter",
+        fontWeight: 600,
+        fontSize: "20px",
+        lineHeight: "24px",
+        textAlign: 'center',
+    }
+
+    const headlineMedium = {
+        fontFamily: "Inter",
+        fontWeight: 500,
+        fontSize: "16px",
+        lineHeight: "20px",
+        color: "#050510"
+    }
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -30,13 +45,15 @@ const TopAppBar = (props) => {
             left: '50%',
             transform: 'translate(-50%, -50%)',
             width: 400,
-            bgcolor: 'background.paper',
+            bgcolor: '#FFFFFF',
             borderRadius: "20px",
-            p: 4,
+            p: "24px 16px 8px",
         };
 
-        let handleRadioChange;
-        
+        const handleRadioChange = (event, newValue) => {
+            setOrder(newValue)
+        }
+
         return (
             <Modal
                 open={open}
@@ -47,17 +64,32 @@ const TopAppBar = (props) => {
                     <Typography
                         id="modal-modal-title"
                         variant="h6"
-                        component="h2">
-                       Сортировка
+                        component="h2"
+                        sx={title2SemiBold}
+                    >
+                        Сортировка
                     </Typography>
+                    <IconButton sx={{
+                        width: "24px",
+                        height: "24px",
+                        background: "#F7F7F8",
+                        position: "absolute",
+                        right: "23px",
+                        top: '24px'
+                    }}>
+                        <CrossIcon/>
+                    </IconButton>
                     <RadioGroup
                         aria-labelledby="demo-error-radios"
                         name="quiz"
                         value={order}
                         onChange={handleRadioChange}
+                        sx={{pt: "16px"}}
                     >
-                        <FormControlLabel value="best" control={<Radio />} label="The best!" />
-                        <FormControlLabel value="worst" control={<Radio />} label="The worst." />
+                        <CustomRadio name={"order"} text={"По алфавиту"} value={"firstName"} order={order}
+                                     setOrder={setOrder}/>
+                        <CustomRadio name={"order"} text={"По дню рождения"} value={"birthday"} order={order}
+                                     setOrder={setOrder}/>
                     </RadioGroup>
                 </Box>
             </Modal>
@@ -109,6 +141,7 @@ const TopAppBar = (props) => {
         color: "#050510",
     }
 
+    console.log(order)
     return (
         <Box sx={{
             p: "16px",
@@ -197,5 +230,39 @@ function FilterIcon(props) {
                     fill="#C3C3C6"/>
             </svg>
         </SvgIcon>
+    )
+}
+
+function CrossIcon(props) {
+    return (
+        <SvgIcon {...props} sx={{width: "10px", height: "10px"}}>
+            <svg viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M9.73641 0.263604C10.0879 0.615076 10.0879 1.18492 9.73641 1.5364L6.273 5L9.73641 8.46362C10.0586 8.7858 10.0854 9.29148 9.81695 9.64424L9.73641 9.73641C9.38494 10.0879 8.81509 10.0879 8.46362 9.73641L5 6.273L1.5364 9.73641C1.18492 10.0879 0.615076 10.0879 0.263604 9.73641C-0.0878679 9.38494 -0.0878679 8.81509 0.263604 8.46362L3.727 5L0.263604 1.5364C-0.0585786 1.21421 -0.0854272 0.708534 0.183058 0.355769L0.263604 0.263604C0.615076 -0.087868 1.18492 -0.087868 1.5364 0.263604L5 3.727L8.46362 0.263604C8.81509 -0.087868 9.38494 -0.087868 9.73641 0.263604Z"
+                    fill="#C3C3C6"/>
+            </svg>
+        </SvgIcon>
+    )
+}
+
+function CustomRadio({text, name, value, order, setOrder}) {
+
+    const handleChange = (e) => {
+        setOrder(e.target.value)
+    }
+
+    return (
+        <Box
+            sx={{
+                p: "20px 2px"
+            }}
+        >
+            <label className="container headlineMedium">{text}
+                <input type="radio" defaultValue={value} name={name} defaultChecked={order === value}
+                       onChange={e => handleChange(e)}
+                />
+                <span className="checkmark"></span>
+            </label>
+        </Box>
     )
 }

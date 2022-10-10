@@ -9,3 +9,72 @@ body {
     position: relative;
     height: 100vh;
 }
+
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 36px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    box-sizing: border-box;
+    /*background-color: #eee;*/
+    border-radius: 50%;
+    border: 2px solid #6534FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #6534FF;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+    display: flex;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+}
+
+.headlineMedium {
+    font-family: "Inter";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #050510;
+}
