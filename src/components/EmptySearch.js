@@ -15,25 +15,12 @@ const EmptySearch = () => {
         }}>
             <img src={glass}/>
             <Typography
-                component={"p"}
-                sx={{
-                    fontWeight: 600,
-                    fontSize: "17px",
-                    lineHeight: "22px",
-                    textAlign: "center",
-                    color: "#050510",
-                    pb: "12px",
-                    pt: "8px"
-                }}>Мы никого не нашли</Typography>
+                component={"p"} sx={{pb: "12px", pt: "8px"}}
+                className={'title3SemiBold textPrimary'}
+            >Мы никого не нашли</Typography>
             <Typography
                 component={"p"}
-                sx={{
-                    fontWeight: 400,
-                    fontSize: "16px",
-                    lineHeight: "20px",
-                    textAlign: "center",
-                    color: "#97979B"
-                }}
+                sx={{textAlign: "center",}} className={'headlineRegular textTetriary'}
             >Попробуй скорректировать запрос</Typography>
         </Box>
     );
