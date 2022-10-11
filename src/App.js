@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Main from "./pages/Main";
 import Detail from "./pages/Detail";
@@ -13,11 +13,36 @@ function App() {
     const [search, setSearch] = useState("")
     const [order, setOrder] = useState('firstName')
 
+    const [isOnline, setIsOnline] = useState(navigator.onLine);
+    const setOnline = () => {
+        console.log('We are online!');
+        setIsOnline(true);
+    };
+    const setOffline = () => {
+        console.log('We are offline!');
+        setIsOnline(false);
+    };
+
+    // Register
+    // the
+    // event
+    // listeners
+    useEffect(() => {
+        window.addEventListener('offline', setOffline);
+        window.addEventListener('online', setOnline);
+
+        // cleanup if we unmount
+        return () => {
+            window.removeEventListener('offline', setOffline);
+            window.removeEventListener('online', setOnline);
+        }
+    }, []);
+
     const router = createBrowserRouter([
         {
             path: "/",
             element: <Main activeTab={activeTab} search={search} setActiveTab={setActiveTab}
-                           setSearch={setSearch} order={order} setOrder={setOrder}/>,
+                           setSearch={setSearch} order={order} setOrder={setOrder} isOnline={isOnline}/>,
         },
         {
             path: "/:id",

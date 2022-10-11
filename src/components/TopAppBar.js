@@ -13,7 +13,7 @@ import {
 
 
 const TopAppBar = (props) => {
-    const {activeTab, setActiveTab, setSearch, order, setOrder, search} = props;
+    const {activeTab, setActiveTab, setSearch, order, setOrder, search, isOnline} = props;
 
     const title2SemiBold = {
         textAlign: 'center',
@@ -152,62 +152,77 @@ const TopAppBar = (props) => {
 
     return (
         <Box sx={{
-            p: "16px",
-            pb: 0,
+            // p: "16px",
+            // pb: 0,
             borderBottom: "1px solid #C3C3C6"
         }}>
-            <Typography component={"p"} sx={{
-                pb: "16px",
-                pl: "8px",
-            }} className={'title1Bold textPrimary'}>
-                Поиск
-            </Typography>
+            <Box sx={{
+                p: "16px",
+                pb: 0,
+                background: (isOnline ? "#ffffff" : "#F44336"),
+            }}>
+                <Typography component={"p"} sx={{
+                    pb: "16px",
+                    pl: "8px",
+                }} className={`title1Bold ${isOnline ? "textPrimary" : "offlineText"}`}>
+                    Поиск
+                </Typography>
 
-            <Paper
-                elevation={0}
-                component="form"
-                fullwidth="true"
-                sx={{
-                    p: '0px 12px',
-                    mt: "8px",
-                    mb: "8px",
-                    display: 'flex',
-                    alignItems: 'center',
-                    background: "#F7F7F8",
-                    borderRadius: "16px",
-                }}
-            >
-                <InputBase
-                    sx={{
-                        flex: 1, caretColor: "#6534FF",
-                        "&.Mui-focused": {
-                            color: "#050510 !important"
-                        },
-                        "&.Mui-focused .MuiInputAdornment-positionStart svg": {
-                            fill: "#050510 !important",
-                        }
-                    }}
-                    placeholder="Введи имя, тег, почту..."
-                    className={'textMedium textDefaultSecondary'}
-                    defaultValue={search}
-                    onChange={e => handleSearchChange(e)}
-                    onFocus={e => e.target.placeholder = ''}
-                    onBlur={e => e.target.placeholder = 'Введи имя, тег, почту...'}
-                    startAdornment={
-                        <InputAdornment position={"start"} sx={{mr: 1, fill: "#C3C3C6"}}>
-                            <SearchIcon/>
-                        </InputAdornment>
-                    }
-                />
-                <IconButton onClick={handleOpen}>
-                    <FilterIcon fill={order === 'birthday' ? "#6534FF" : "#C3C3C6"}/>
-                </IconButton>
-            </Paper>
-
+                {isOnline ?
+                    <Paper
+                        elevation={0}
+                        component="form"
+                        fullwidth="true"
+                        sx={{
+                            p: '0px 12px',
+                            mt: "8px",
+                            mb: "8px",
+                            display: 'flex',
+                            alignItems: 'center',
+                            background: "#F7F7F8",
+                            borderRadius: "16px",
+                        }}
+                    >
+                        <InputBase
+                            sx={{
+                                flex: 1, caretColor: "#6534FF",
+                                "&.Mui-focused": {
+                                    color: "#050510 !important"
+                                },
+                                "&.Mui-focused .MuiInputAdornment-positionStart svg": {
+                                    fill: "#050510 !important",
+                                }
+                            }}
+                            placeholder="Введи имя, тег, почту..."
+                            className={'textMedium textDefaultSecondary'}
+                            defaultValue={search}
+                            onChange={e => handleSearchChange(e)}
+                            onFocus={e => e.target.placeholder = ''}
+                            onBlur={e => e.target.placeholder = 'Введи имя, тег, почту...'}
+                            startAdornment={
+                                <InputAdornment position={"start"} sx={{mr: 1, fill: "#C3C3C6"}}>
+                                    <SearchIcon/>
+                                </InputAdornment>
+                            }
+                        />
+                        <IconButton onClick={handleOpen}>
+                            <FilterIcon fill={order === 'birthday' ? "#6534FF" : "#C3C3C6"}/>
+                        </IconButton>
+                    </Paper>
+                    : (
+                        <Box sx={{p: "8px 8px 12px"}}>
+                            <Typography className={"offlineText caption1Medium"} sx={{height: '32px'}}>
+                                Не могу обновить данные. Проверь соединение с интернетом.
+                            </Typography>
+                        </Box>
+                    )
+                }
+            </Box>
             <Tabs value={activeTab}
                   onChange={handleChange}
                   textColor={"inherit"}
                   sx={{
+                      p: "0 16px ",
                       color: "#050510",
                       fontSize: "15px",
                       lineHeight: "20px",
