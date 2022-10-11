@@ -18,12 +18,13 @@ const Home = (props) => {
         axios.get(`https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users`, {params: {"__example": activeTab}}).then(
             (resp) => {
                 setUsersList(resp.data.items)
-                setIsLoading(false)
+                setIsLoading(false);
+                setIsError(false);
             }
         ).catch(err => {
             setIsError(true);
             setIsLoading(false)
-            console.log(err)
+            // console.log(err)
         })
     }, [activeTab, refresh])
 
