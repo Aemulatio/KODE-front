@@ -170,6 +170,18 @@ body {
     line-height: 22px !important;
 }
 
+.caption1Medium {
+    font-family: 'Inter' !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 13px !important;
+    line-height: 16px !important;
+}
+
+.offlineText {
+    color: #ffffff !important;
+}
+
 /*-------------------------------------------------------------------*/
 .horizontalDivider {
     top: 50%;
