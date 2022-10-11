@@ -93,15 +93,15 @@ const TopAppBar = (props) => {
             value: "all",
         },
         {
-            label: "Designers",
+            label: "Дизайн",
             value: "design",
         },
         {
-            label: "Analysts",
+            label: "Аналитика",
             value: "analytics",
         },
         {
-            label: "Managers",
+            label: "Менеджмент",
             value: "management",
         },
         {
@@ -111,6 +111,34 @@ const TopAppBar = (props) => {
         {
             label: "Android",
             value: "android",
+        },
+        {
+            label: "QA",
+            value: "qa",
+        },
+        {
+            label: "Бэк-офис",
+            value: "back_office",
+        },
+        {
+            label: "Frontend",
+            value: "frontend",
+        },
+        {
+            label: "HR",
+            value: "hr",
+        },
+        {
+            label: "PR",
+            value: "pr",
+        },
+        {
+            label: "Backend",
+            value: "backend",
+        },
+        {
+            label: "Техподдержка",
+            value: "support",
         },
     ]
 
