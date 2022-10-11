@@ -43,7 +43,9 @@ const DetailBody = ({user}) => {
                     pt: "22px",
                 }}>
                     <img src={Phone} alt="" style={{paddingRight: "14px"}}/>
-                    <Typography className={'headlineMedium textPrimary'}>{user.phone}</Typography>
+                    <Typography className={'headlineMedium textPrimary'} component={"a"}
+                                sx={{textDecoration: "none"}}
+                                href={"tel:" + user.phone}>{user.phone}</Typography>
                 </Box>
             </Box>
         </Box>
