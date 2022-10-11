@@ -155,7 +155,7 @@ const TopAppBar = (props) => {
                         "&.Mui-focused": {
                             color: "#050510 !important"
                         },
-                        "&.Mui-focused .MuiInputAdornment-positionStart": {
+                        "&.Mui-focused .MuiInputAdornment-positionStart svg": {
                             fill: "#050510 !important",
                         }
                     }}
